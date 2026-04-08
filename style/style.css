@@ -568,6 +568,11 @@ body {
   text-decoration: none
 }
 
+.but-box{
+  width: 42px;
+  height: 57px;
+}
+
 @media (width<412px) {
   object:has(:not(.heart)) {
     max-width: 412px;
