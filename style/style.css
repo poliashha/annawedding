@@ -540,6 +540,10 @@ body {
   padding-top: 20px;
 }
 
+.messenger object {
+  pointer-events: none; 
+}
+
 @media (width<412px) {
   object:has(:not(.heart)) {
     max-width: 412px;
