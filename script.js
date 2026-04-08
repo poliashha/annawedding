@@ -118,14 +118,13 @@ const btn = document.getElementById("audioBtn");
 const img = btn.querySelector(".music");
 let isPlaying = false;
 
-// Пытаемся запустить музыку при загрузке
 audio
   .play()
   .then(() => {
     isPlaying = true;
   })
   .catch(() => {
-    img.src = "./img/off.svg";
+    img.src = "./img/off.png";
   });
 
 // Управление по клику
@@ -133,22 +132,21 @@ btn.addEventListener("click", () => {
   if (isPlaying) {
     audio.pause();
     isPlaying = false;
-    img.src = "./img/off.svg";
+    img.src = "./img/off.png";
   } else {
     audio.play();
     isPlaying = true;
-    img.src = "./img/on.svg";
+    img.src = "./img/on.png";
   }
 });
 
-// Если автовоспроизведение заблокировано - запускаем по первому клику в любом месте
 document.body.addEventListener(
   "click",
   function firstClick() {
     if (!isPlaying && audio.paused) {
       audio.play();
       isPlaying = true;
-      img.src = "./img/on.svg";
+      img.src = "./img/on.png";
     }
     document.body.removeEventListener("click", firstClick);
   },
