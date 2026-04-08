@@ -36,22 +36,6 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const checkbox = document.getElementById("another"); // это checkbox
-  const allergyBlock = document.getElementById("allergyDetails");
-
-  function toggleAllergyField() {
-    if (checkbox.checked) {
-      // для checkbox используем .checked
-      allergyBlock.classList.add("show");
-    } else {
-      allergyBlock.classList.remove("show");
-    }
-  }
-
-  checkbox.addEventListener("change", toggleAllergyField);
-  toggleAllergyField(); // вызов при загрузке
-});
 const nameInput = document.getElementById("name");
 const errorElement = document.getElementById("error-text");
 
@@ -118,13 +102,14 @@ const btn = document.getElementById("audioBtn");
 const img = btn.querySelector(".music");
 let isPlaying = false;
 
+// Пытаемся запустить музыку при загрузке
 audio
   .play()
   .then(() => {
     isPlaying = true;
   })
   .catch(() => {
-    img.src = "./img/off.png";
+    img.data = "./img/off.svg";
   });
 
 // Управление по клику
@@ -132,21 +117,22 @@ btn.addEventListener("click", () => {
   if (isPlaying) {
     audio.pause();
     isPlaying = false;
-    img.src = "./img/off.png";
+    img.data = "./img/off.svg";
   } else {
     audio.play();
     isPlaying = true;
-    img.src = "./img/on.png";
+    img.data = "./img/on.svg";
   }
 });
 
+// Если автовоспроизведение заблокировано - запускаем по первому клику в любом месте
 document.body.addEventListener(
   "click",
   function firstClick() {
     if (!isPlaying && audio.paused) {
       audio.play();
       isPlaying = true;
-      img.src = "./img/on.png";
+      img.data = "./img/on.svg";
     }
     document.body.removeEventListener("click", firstClick);
   },
