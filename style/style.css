@@ -35,6 +35,26 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.audio.fixed {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 3;
+  animation: fix 0.5s ease forwards;
+}
+
+@keyframes fix{
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .box-priglos {
@@ -474,7 +494,7 @@ body {
   content: "часов";
   position: absolute;
   top: 75px;
-  right:  8px;
+  right:  5px;
   font-size: 15px;
   font-family: var(--main-font);
   font-weight: 400;
@@ -542,6 +562,10 @@ body {
 
 .messenger object {
   pointer-events: none; 
+}
+
+.tel{
+  text-decoration: none
 }
 
 @media (width<412px) {

@@ -1,5 +1,5 @@
 const scriptURL =
-  "https://script.google.com/macros/s/AKfycbxF9jqi0lCosqYnos3LtsiLLr0QSxkDGlxJWkUuIfoBvmTZ36W3pQHumUrusHvLxQo9TA/exec";
+  "https://script.google.com/macros/s/AKfycbxL9conQHf8OS9Nody0i1mtscezOiq6j-pNvOlFTQXh227cMRWWSKoZT3Z5gibonwul6w/exec";
 const form = document.forms["submit-to-google-sheet"];
 
 form.addEventListener("submit", async (e) => {
@@ -65,6 +65,33 @@ document.querySelectorAll('input[name="presence"]').forEach((radio) => {
     document.getElementById("presenceError").classList.remove("show");
   });
 });
+
+const audioBtn = document.getElementById("audioBtn");
+
+function handleScroll() {
+  // Получаем позицию кнопки относительно документа
+  const btnRect = audioBtn.getBoundingClientRect();
+  const scrollY = window.scrollY;
+
+  // Исходная позиция кнопки (запоминаем при первом вызове)
+  if (!audioBtn.dataset.originalTop) {
+    audioBtn.dataset.originalTop = btnRect.top + scrollY;
+  }
+
+  const originalTop = parseFloat(audioBtn.dataset.originalTop);
+
+  // Если докрутили до кнопки или ниже
+  if (scrollY >= originalTop) {
+    audioBtn.classList.add("fixed");
+  } else {
+    audioBtn.classList.remove("fixed");
+  }
+}
+
+// Слушаем событие прокрутки
+window.addEventListener("scroll", handleScroll);
+// Вызываем один раз при загрузке, чтобы установить начальное состояние
+handleScroll();
 
 function startCountdown(targetDate) {
   function updateTimer() {
